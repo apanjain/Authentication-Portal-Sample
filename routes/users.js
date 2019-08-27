@@ -33,6 +33,7 @@ router.get("/edit/:userid",middleware.checkAccountOwnership,function(req,res){
 
 
 router.put("/edit/:userid",middleware.checkAccountOwnership,function(req,res){
+
 	var newData =  {
 			username:req.body.username,
 	      	firstName: req.body.firstName,
@@ -47,7 +48,7 @@ router.put("/edit/:userid",middleware.checkAccountOwnership,function(req,res){
 	User.findByIdAndUpdate(req.params.userid,  {$set: newData}, function(err,updatedAccount){
 		if(err){
 			console.log(err);
-			req.flash("error", 'Something Went Wrong!!');
+			req.flash("error", 'Something Went Wrong!');
 			res.redirect("/show/"+req.params.userid);
 		}else{
 			req.flash("success","Succesfully Updated!");

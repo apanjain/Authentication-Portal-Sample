@@ -10,7 +10,9 @@ var express          = require("express"),
 
 require('dotenv').config();
 
-mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true});
+var url = process.env.DATABASEURL || 'mongodb://localhost:27017/saprkTest'
+
+mongoose.connect(url, {useNewUrlParser: true});
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+"/public"));
@@ -53,8 +55,3 @@ app.use("/", forgotRoutes);
 app.listen(process.env.PORT, process.env.IP,function(){
 	console.log("Server started");
 });
-
-
-
-//#c2a919
-
