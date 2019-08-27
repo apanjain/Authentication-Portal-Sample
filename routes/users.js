@@ -5,7 +5,7 @@ var middleware = require("../middleware");
 
 
 //show
-router.get("/show/:userid",middleware.checkAccountOwnership, function(req,res){
+router.get("/show/:userid", function(req,res){
 	User.findById(req.params.userid,function(err,foundUser){
 		if(err){
 			console.error(err);
