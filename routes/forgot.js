@@ -8,12 +8,12 @@ var crypto = require("crypto");
 var middleware = require("../middleware");
 
 // forgot password
-router.get('/forgot', function(req, res) {
+router.get('/forgot', middleware.isLoggedOut,function(req, res) {
   req.logout();
   res.render('forgot');
 });
 
-router.post('/forgot', function(req, res, next) {
+router.post('/forgot',middleware.isLoggedOut, function(req, res, next) {
   req.logout();
   async.waterfall([
     function(done) {
