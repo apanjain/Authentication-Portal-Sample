@@ -60,7 +60,7 @@ router.put("/edit/:userid",middleware.checkAccountOwnership,function(req,res){
 //Delete Account
 router.delete("/delete/:userid",middleware.checkAccountOwnership, function(req,res){
     req.logout();
-    User.findByIdAndRemove(req.params.id,function(err){
+    User.findByIdAndRemove(req.params.userid,function(err){
         if(err){
             console.log(err);
             req.flash("error", 'Something Went Wrong!!');
