@@ -1,0 +1,50 @@
+<% include partials/header %>
+
+	<div class="row">
+		<div class="col-5">
+			<div class="card" style="width: 18rem; margin-left:15px">
+	  			<img src="<%=user.image%>" class="card-img-top" alt="Image cannot be loaded at the moment">
+	  			<div class="card-body">
+	    			<h5 class="card-title" style="font-color:#17a2b8"><%= user.username%></h5>
+	  			</div>
+			</div>
+		</div>
+		<div class="col-7">
+			<div class="row">
+				<div class="col-4"><p><strong>Name:</strong></p></div>
+				<div class="col"><p><%= user.firstName +" "+ user.lastName%></p></div>
+			</div>
+			<div class="row">
+				<div class="col-4"><p><strong>Gender:</strong></p></div>
+				<div class="col"><p><%= user.gender %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-4"><p><strong>Email:</strong></p></div>
+				<div class="col"><p><%= user.email %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-4"><p><strong>Institute:</strong></p></div>
+				<div class="col"><p><%= user.institute %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-4"><p><strong>Mobile Number:</strong></p></div>
+				<div class="col"><p><%= user.mobileNo %></p></div>
+			</div>
+			<div class="row" style="margin-top: 260px">
+				<div class="col-5"></div>
+				<div class="col-3" style="padding-left: 0;padding-right: 0">
+					<form action="/delete/<%=user._id%>?_method=DELETE" method="POST">
+						<button class="btn btn-outline-danger"><i class="fas fa-trash"></i>  Delete Account</button>
+					</form>
+				</div>
+				<div class="col" style="padding-left: 0;padding-right: 0"><a class="btn btn-outline-info" href="/edit/<%=user._id%>"><i class="fas fa-user-edit" ></i>  Edit Details </a></div>
+			</div>
+		</div>
+	</div>
+
+
+		
+
+
+
+<% include partials/footer %>

@@ -1,0 +1,42 @@
+<% include partials/header %>
+
+	<div style="text-align: center">
+		<h1>Edit Your Details</h1>
+	</div>
+	<div style="width:40%; margin: 25px auto"  >
+		<form action="/edit/<%= user._id %>?_method=PUT" method="POST">
+			<div class="form-group">
+	    		<input type="text" class="form-control" name="username" value="<%= user.username %>">
+	  		</div>
+	  		
+	  		<div class="form-group">
+	    		<input type="text" class="form-control" id="image" name="image" placeholder="Image URL">
+	  		</div>
+
+	  		<!-- first last  -->
+	  		<div class="form-row form-group">
+	    		<div class="col">
+	      			<input type="text" class="form-control" name="firstName" value="<%= user.firstName %>">
+	    		</div>
+	    		<div class="col">
+	      			<input type="text" class="form-control" name="lastName" value="<%= user.lastName %>">
+	    		</div>
+	  		</div>
+	  		<div class="form-group">
+	    		<input type="email" class="form-control" name="email" aria-describedby="emailHelp" value="<%= user.email %>">
+	  		</div>
+	 		<div class="input-group mb-3">
+	    		<div class="input-group-prepend">
+    				<span class="input-group-text" id="basic-addon1">+91</span>
+  				</div>
+  				<input type="text" minlength="10" maxlength="10" class="form-control" name="mobileNo" value="<%= user.mobileNo %>" aria-describedby="basic-addon1">
+	  		</div>
+	  		<div class="form-group">
+	    		<input type="text" class="form-control" name="institute" value="<%= user.institute %>">
+	  		</div>
+			<button type="submit" class="btn btn-info">Save Updates</button>
+		</form>		
+	</div>
+
+
+<% include partials/footer %>
