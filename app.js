@@ -10,7 +10,7 @@ var express          = require("express"),
 
 require('dotenv').config();
 
-var url = process.env.DATABASEURL || 'mongodb://localhost:27017/saprkTest'
+var url = process.env.DATABASEURL || 'mongodb://localhost:27017/sparkTest'
 
 mongoose.connect(url, {useNewUrlParser: true});
 mongoose.set('useFindAndModify', false);
@@ -53,5 +53,5 @@ app.use("/", forgotRoutes);
 
 //Server
 app.listen(process.env.PORT, process.env.IP,function(){
-	console.log("Server started");
+	console.log(`Server started on PORT ${process.env.PORT}`);
 });
