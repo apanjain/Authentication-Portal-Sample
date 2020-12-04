@@ -38,11 +38,19 @@ router.post('/forgot',middleware.isLoggedOut, function(req, res, next) {
       });
     },
     function(token, user, done) {
+      var clientId = process.env.OAUTH_CLIENT_ID
+      var clientSecret = process.env.OAUTH_CLIENT_SECRET
+      var refreshToken = process.env.OAUTH_CLIENT_REFRESH_TOKEN
+      var userMailID = process.env.OAUTH_CLIENT_EMAIL
+
       var smtpTransport = nodemailer.createTransport({
-        service: 'Gmail', 
+        host: "smtp.gmail.com",
         auth: {
-          user: process.env.GMAILID,
-          pass: process.env.GMAILPW,
+          type: "OAuth2",
+                user: userMailID,
+                clientId: clientId,
+                clientSecret: clientSecret,
+                refreshToken: refreshToken
         }
       });
       var mailOptions = {

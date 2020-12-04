@@ -10,9 +10,22 @@ var express          = require("express"),
 
 require('dotenv').config();
 
-var url = process.env.DATABASEURL || 'mongodb://localhost:27017/sparkTest'
 
-mongoose.connect(url, {useNewUrlParser: true});
+// mongoose setup
+
+var dbHost = process.env.DB_HOST || 'localhost';
+var dbName = process.env.DB_NAME;
+var dbUser = process.env.DB_USERNAME;
+var dbPass = process.env.DB_PASSWORD;
+var dbPort = process.env.DB_PORT || "27017";
+
+var url = "mongodb://" + dbUser + ":" + dbPass + "@" + dbHost + ":" + dbPort + "/" + dbName;
+
+mongoose
+    .connect(url, {useNewUrlParser: true})
+    .then(() => console.log("Connected To Database"))
+    .catch(err => console.error(err));
+
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+"/public"));
@@ -52,6 +65,7 @@ app.use("/", userRoutes);
 app.use("/", forgotRoutes);
 
 //Server
-app.listen(process.env.PORT, process.env.IP,function(){
-	console.log(`Server started on PORT ${process.env.PORT}`);
+app.listen(process.env.PORT,function(){
+    console.log(`Server started on PORT ${process.env.PORT}`);
+    console.log(`Visit http://localhost:${process.env.PORT}`);
 });
